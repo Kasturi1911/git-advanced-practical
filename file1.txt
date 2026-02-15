@@ -1,3 +1,2 @@
 File 1 - v1
 File 1 - v2 (modified in commit2)
-File 1 - v3 (only file1 changed in commit3)
