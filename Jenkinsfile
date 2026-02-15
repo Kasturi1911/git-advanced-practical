@@ -1,16 +1,17 @@
 node {
     stage('Clone Repository') {
-        checkout scm // Clones the scripted branch
+        checkout scm
     }
     stage('Build') {
         echo 'Running Scripted Build...'
-        sh 'echo "Scripted Build Success" > scripted_output.txt'
+        // Changed 'sh' to 'bat' for Windows compatibility
+        bat 'echo Scripted build successful > scripted_output.txt'
     }
     stage('Echo Build Status') {
-        // Scripted pipelines use Groovy variables directly
-        echo "Build Result: ${currentBuild.result ?: 'SUCCESS'}"
+        echo "The current build status is: ${currentBuild.result ?: 'SUCCESS'}"
     }
     stage('Archive Artifacts') {
+        // This fulfills the 'Archive Artifacts' requirement
         archiveArtifacts artifacts: 'scripted_output.txt'
     }
 }
